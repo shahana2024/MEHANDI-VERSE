@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MehndiVerse · product approval</title>
+    <!-- Font Awesome 6 (same as header) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f8efe6;
+            font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+            color: #2e1c12;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* main content */
+        .product-approval {
+            flex: 1;
+            max-width: 1400px;
+            width: 100%;
+            margin: 30px auto 40px;
+            padding: 0 25px;
+        }
+
+        /* page header */
+        .page-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .page-header h1 {
+            font-size: 2.8rem;
+            font-weight: 600;
+            color: #351f12;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .page-header h1 i {
+            color: #bc6137;
+            background: #f4d9c4;
+            padding: 12px;
+            border-radius: 50%;
+            box-shadow: 0 6px 0 #c27647;
+        }
+
+        .stats-badge {
+            background: #e5cfbc;
+            padding: 12px 28px;
+            border-radius: 60px;
+            font-size: 1.3rem;
+            font-weight: 550;
+            border: 2px solid #b9794d;
+            box-shadow: 0 5px 0 #8d5836;
+            color: #2f1d10;
+        }
+
+        .stats-badge i {
+            color: #aa4e1e;
+            margin-right: 10px;
+        }
+
+        /* ---------- product cards grid ---------- */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 50px 12px 50px 12px;
+            box-shadow: 0 20px 30px -12px #a86941;
+            transition: transform 0.2s ease, box-shadow 0.2s;
+            border: 2px solid #f5cfb2;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 28px 35px -12px #9a623f;
+            border-color: #cf8b5e;
+        }
+
+        /* image area */
+        .product-image {
+            height: 220px;
+            background: #dbbc9b;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            border-bottom: 5px solid #cf8b5e;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-start;
+            padding: 15px;
+        }
+
+        /* approval status badge on image */
+        .approval-badge {
+            background: #261c14e0;
+            backdrop-filter: blur(3px);
+            color: #ffdbb8;
+            padding: 8px 18px;
+            border-radius: 40px 6px 40px 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            border: 1px solid #d6935e;
+            text-transform: capitalize;
+        }
+
+        .approval-badge i {
+            margin-right: 6px;
+            color: #f3b180;
+        }
+
+        /* product content */
+        .product-content {
+            padding: 22px 22px 25px;
+            background: #fffcf7;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-name {
+            font-size: 2rem;
+            font-weight: 650;
+            color: #2f1a0d;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 2px dashed #deb887;
+            padding-bottom: 12px;
+            margin-bottom: 16px;
+        }
+
+        .product-name i {
+            color: #bb693c;
+            font-size: 1.8rem;
+        }
+
+        /* detail rows */
+        .detail-list {
+            list-style: none;
+            margin: 10px 0 15px;
+        }
+
+        .detail-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 16px;
+            font-size: 1.1rem;
+            color: #3d291c;
+        }
+
+        .detail-list li i {
+            width: 28px;
+            color: #bc6137;
+            font-size: 1.3rem;
+            margin-top: 2px;
+        }
+
+        .detail-list li span {
+            flex: 1;
+            line-height: 1.5;
+            word-break: break-word;
+        }
+
+        /* price & stock row */
+        .price-stock {
+            display: flex;
+            gap: 20px;
+            background: #faeadb;
+            padding: 14px 18px;
+            border-radius: 40px 8px 40px 8px;
+            margin: 10px 0 20px;
+            border: 1px solid #dba477;
+        }
+
+        .price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #962d0e;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .stock {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2e6b2e;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #e0f0da;
+            padding: 5px 15px;
+            border-radius: 40px 6px 40px 6px;
+        }
+
+        /* date chip */
+        .date-chip {
+            background: #edd9c5;
+            padding: 8px 18px;
+            border-radius: 40px 6px 40px 6px;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid #ba7b4b;
+            margin-bottom: 20px;
+            width: fit-content;
+        }
+
+        /* action buttons */
+        .action-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: auto;
+            border-top: 2px solid #f0cdb2;
+            padding-top: 22px;
+        }
+
+        .btn {
+            padding: 12px 28px;
+            border-radius: 40px 6px 40px 6px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            transition: 0.15s;
+            border: 2px solid transparent;
+            box-shadow: 0 5px 0 #7e462b;
+            cursor: pointer;
+            flex: 1 1 auto;
+            justify-content: center;
+        }
+
+        .btn-accept {
+            background: #2c6e3c;
+            color: white;
+            border-color: #9abf8b;
+        }
+        .btn-accept i { color: #c6ffb0; }
+
+        .btn-reject {
+            background: #a5482b;
+            color: white;
+            border-color: #e89f83;
+        }
+        .btn-reject i { color: #ffcfb0; }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.05);
+            box-shadow: 0 7px 0 #5f3521;
+        }
+
+        /* empty state */
+        .empty-state {
+            grid-column: 1 / -1;
+            background: #fffbee;
+            border-radius: 100px 20px 100px 20px;
+            padding: 80px 20px;
+            text-align: center;
+            font-size: 2rem;
+            color: #7b5a40;
+            border: 4px dashed #c79b75;
+        }
+
+        /* responsive */
+        @media (max-width: 700px) {
+            .page-header {
+                flex-direction: column;
+                align-items: start;
+            }
+            .product-image {
+                height: 180px;
+            }
+        }
+
+        .footer {
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========== MEHNDI VERSE ADMIN HEADER ========== -->
+    {% include 'admin_header.html' %}
+
+    <!-- ========== PRODUCT APPROVAL SECTION ========== -->
+    <main class="product-approval">
+        <div class="page-header">
+            <h1>
+                <i class="fas fa-box-open"></i> 
+                product approval
+            </h1>
+            <div class="stats-badge">
+                <i class="fas fa-cubes"></i> {{ data|length }} product{{ data|length|pluralize }}
+            </div>
+        </div>
+
+        <!-- product grid -->
+        <div class="product-grid">
+            {% for i in data %}
+            <div class="product-card">
+                <!-- image with approval status overlay -->
+                <div class="product-image" 
+                     {% if i.image %}style="background-image: url('{{ i.image }}');"{% else %}style="background: linear-gradient(145deg, #c7a484, #b58b66);"{% endif %}>
+                    <span class="approval-badge">
+<!-- image with approval status overlay -->
+<div class="product-image"
+     {% if i.image %}style="background-image: url('{{ i.image }}');"{% else %}style="background: linear-gradient(145deg, #c7a484, #b58b66);"{% endif %}>
+    <span class="approval-badge">
+        {% if i.is_approved == 'Accept' %}
+            <i class="fas fa-check-circle"></i> Accept
+        {% elif i.is_approved == 'Pending' %}
+            <i class="fas fa-hourglass-half"></i> Pending
+        {% else %}
+            <i class="fas fa-times-circle"></i> Reject
+        {% endif %}
+    </span>
+</div>                        {{ i.is_approved }}
+                    </span>
+                </div>
+
+                <div class="product-content">
+                    <!-- product name -->
+                    <div class="product-name">
+                        <i class="fas fa-tag"></i> {{ i.name }}
+                    </div>
+
+                    <!-- details list -->
+                    <ul class="detail-list">
+                        <li>
+                            <i class="fas fa-align-left"></i>
+                            <span>{% if i.description %}{{ i.description }}{% else %}<span style="color:#ab7c5d;">no description</span>{% endif %}</span>
+                        </li>
+                    </ul>
+
+                    <!-- price & stock row -->
+                    <div class="price-stock">
+                        <div class="price">
+                            <i class="fas fa-indian-rupee-sign"></i> {{ i.price }}
+                        </div>
+                        <div class="stock">
+                            <i class="fas fa-layer-group"></i> {{ i.stock }} in stock
+                        </div>
+                    </div>
+
+                    <!-- created at -->
+                    <div class="date-chip">
+                        <i class="fas fa-calendar-alt"></i> listed on {{ i.created_at }}
+                    </div>
+
+                    <!-- accept / reject buttons (exactly as per original) -->
+                    <div class="action-group">
+                        <a href="/myapp/admin_accept_product/{{ i.id }}" class="btn btn-accept"><i class="fas fa-check"></i> Accept</a>
+                        <a href="/myapp/admin_reject_product/{{ i.id }}" class="btn btn-reject"><i class="fas fa-ban"></i> Reject</a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <!-- if no products -->
+            <div class="empty-state">
+                <i class="fas fa-box"></i> no products found<br>
+                <span style="font-size: 1.4rem;">items submitted by artists will appear here</span>
+            </div>
+            {% endfor %}
+        </div>
+    </main>
+
+    <!-- ========== FOOTER ========== -->
+    {% include 'footer.html' %}
+
+</body>
+</html>

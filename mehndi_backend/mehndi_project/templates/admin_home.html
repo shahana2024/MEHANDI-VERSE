@@ -1,0 +1,50 @@
+{% include 'admin_header.html' %}
+
+    <!-- ========== MAIN CONTENT (no dashboard, just simple blocks) ========== -->
+    <main class="main-area">
+        <!-- welcome card -->
+        <div class="welcome-card">
+            <h1><i class="fas fa-hand-sparkles"></i> namaste, admin</h1>
+            <p>manage your mehndi world — artists, designs, and more</p>
+        </div>
+
+        <!-- info cards (non-dashboard) -->
+        <div class="content-grid">
+            <div class="info-card">
+                <i class="fas fa-paint-brush"></i>
+                <h3>{{ Design }} designs</h3>
+                <p>in 12 categories · arabic, bridal, indo</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-user-group"></i>
+                <h3>{{ artist }} artists</h3>
+                <p>active creators from 6 countries</p>
+            </div>
+            <div class="info-card">
+    <i class="fas fa-users"></i>
+                <h3>{{ users }} Customers</h3>
+                <p>trust us worldwide</p>
+            </div>
+        </div>
+
+        <!-- mini gallery preview (just for aesthetics) -->
+        <h2 style="font-size:2rem; margin-bottom:20px; border-left:12px solid #c16633; padding-left:20px;">fresh mehndi glimpses</h2>
+        <div class="mini-gallery">
+            <div class="gallery-item hand-1">royal dulhan</div>
+            <div class="gallery-item hand-2">rajasthani</div>
+            <div class="gallery-item hand-3">indo-chic</div>
+            <div class="gallery-item hand-4">gulf style</div>
+        </div>
+
+        <!-- simple extra content (no dashboard tables) -->
+        <div style="background:#fff7ef; border-radius:50px 10px 50px 10px; padding:30px; border:2px solid #f1be98; margin:40px 0;">
+            <h3 style="font-size:1.8rem;"><i class="fas fa-bell"></i> recent updates</h3>
+            <ul style="margin-top:20px; list-style:none;">
+                <li style="padding:10px 0; border-bottom:1px solid #eccaaf;">✦ new artist: Priya Kapoor (indo-chic) joined</li>
+                <li style="padding:10px 0; border-bottom:1px solid #eccaaf;">✦ 5 new bridal designs added by Lakshmi Devi</li>
+                <li style="padding:10px 0;">✦ 12 reviews pending moderation</li>
+            </ul>
+        </div>
+    </main>
+
+  {%  include 'footer.html' %}

@@ -1,0 +1,57 @@
+  <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h4>mehndiVerse</h4>
+                <p style="color:#dbba9a;">sliding admin panel · manage with ease</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>explore</h4>
+                <ul>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> designs</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> artists</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> community</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>admin</h4>
+                <ul>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> dashboard</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> settings</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> logout</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 mehndiVerse — sliding admin window <i class="fas fa-heart" style="color: #c66835;"></i></p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for sliding sidebar -->
+    <script>
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+        const openBtn = document.getElementById('openSidebarBtn');
+        const closeBtn = document.getElementById('closeSidebarBtn');
+
+        function openSidebar() {
+            sidebar.classList.add('open');
+            overlay.classList.add('show');
+        }
+
+        function closeSidebar() {
+            sidebar.classList.remove('open');
+            overlay.classList.remove('show');
+        }
+
+        openBtn.addEventListener('click', openSidebar);
+        closeBtn.addEventListener('click', closeSidebar);
+        overlay.addEventListener('click', closeSidebar);
+    </script>
+</body>
+</html>

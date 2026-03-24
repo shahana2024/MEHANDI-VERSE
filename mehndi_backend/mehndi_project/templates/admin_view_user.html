@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MehndiVerse · user directory</title>
+    <!-- Font Awesome 6 (same as header) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f8efe6;
+            font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+            color: #2e1c12;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* main content area */
+        .user-directory {
+            flex: 1;
+            max-width: 1400px;
+            width: 100%;
+            margin: 30px auto 40px;
+            padding: 0 25px;
+        }
+
+        /* page header */
+        .page-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .page-header h1 {
+            font-size: 2.8rem;
+            font-weight: 600;
+            color: #351f12;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .page-header h1 i {
+            color: #bc6137;
+            background: #f4d9c4;
+            padding: 12px;
+            border-radius: 50%;
+            box-shadow: 0 6px 0 #c27647;
+        }
+
+        .stats-badge {
+            background: #e5cfbc;
+            padding: 12px 28px;
+            border-radius: 60px;
+            font-size: 1.3rem;
+            font-weight: 550;
+            border: 2px solid #b9794d;
+            box-shadow: 0 5px 0 #8d5836;
+            color: #2f1d10;
+        }
+
+        .stats-badge i {
+            color: #aa4e1e;
+            margin-right: 10px;
+        }
+
+        /* ---------- user cards grid (replaces plain table) ---------- */
+        .user-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .user-card {
+            background: white;
+            border-radius: 50px 12px 50px 12px;
+            box-shadow: 0 20px 30px -12px #a86941;
+            transition: transform 0.2s ease, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border: 2px solid #f5cfb2;
+            position: relative;
+        }
+
+        .user-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 28px 35px -12px #9a623f;
+            border-color: #cf8b5e;
+        }
+
+        /* decorative header stripe (mehndi theme) */
+        .card-stripe {
+            height: 12px;
+            background: linear-gradient(90deg, #bc6137, #dF7a4a, #e7a074);
+            border-bottom: 3px solid #a24f28;
+        }
+
+        .user-content {
+            padding: 25px 22px 22px;
+            background: #fffcf7;
+        }
+
+        /* user name (combined fname + lname) */
+        .user-name {
+            font-size: 2rem;
+            font-weight: 650;
+            color: #2f1a0d;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 2px dashed #deb887;
+            padding-bottom: 14px;
+            margin-bottom: 18px;
+        }
+
+        .user-name i {
+            color: #bb693c;
+            font-size: 2rem;
+            background: #fae1cd;
+            padding: 10px;
+            border-radius: 50%;
+        }
+
+        /* details list */
+        .details-list {
+            list-style: none;
+            margin: 10px 0 15px;
+        }
+
+        .details-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 18px;
+            font-size: 1.15rem;
+            color: #3d291c;
+        }
+
+        .details-list li i {
+            width: 28px;
+            color: #bc6137;
+            font-size: 1.4rem;
+            margin-top: 2px;
+        }
+
+        .details-list li span {
+            flex: 1;
+            line-height: 1.5;
+            word-break: break-word;
+        }
+
+        /* address block with chips */
+        .address-chip {
+            background: #edd9c5;
+            padding: 8px 16px;
+            border-radius: 30px 6px 30px 6px;
+            display: inline-block;
+            font-size: 1rem;
+            border: 1px solid #ba7b4b;
+            color: #2e1a0b;
+            margin-right: 6px;
+            margin-bottom: 6px;
+        }
+
+        .city-pincode {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
+        }
+
+        /* gender badge */
+        .gender-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #d9b69b;
+            padding: 6px 18px;
+            border-radius: 40px 6px 40px 6px;
+            font-weight: 600;
+            color: #2b1b10;
+            border: 2px solid #b46838;
+            margin-top: 6px;
+        }
+
+        .gender-badge i {
+            color: #562f18;
+        }
+
+        /* empty state */
+        .no-users {
+            grid-column: 1 / -1;
+            background: #fffbee;
+            border-radius: 100px 20px 100px 20px;
+            padding: 80px 20px;
+            text-align: center;
+            font-size: 2rem;
+            color: #7b5a40;
+            border: 4px dashed #c79b75;
+        }
+
+        /* responsive */
+        @media (max-width: 700px) {
+            .page-header {
+                flex-direction: column;
+                align-items: start;
+            }
+        }
+
+        /* footer adjustment */
+        .footer {
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========== MEHNDI VERSE ADMIN HEADER ========== -->
+    {% include 'admin_header.html' %}
+
+    <!-- ========== USER DIRECTORY SECTION ========== -->
+    <main class="user-directory">
+        <div class="page-header">
+            <h1>
+                <i class="fas fa-users"></i> 
+                user directory
+            </h1>
+            <div class="stats-badge">
+                <i class="fas fa-user-group"></i> {{ data|length }} registered
+            </div>
+        </div>
+
+        <!-- user grid – loops through data -->
+        <div class="user-grid">
+            {% for i in data %}
+            <div class="user-card">
+                <div class="card-stripe"></div>
+                <div class="user-content">
+                    <!-- full name (fname + lname) -->
+                    <div class="user-name">
+                        <i class="fas fa-user-circle"></i> 
+                        {{ i.fname }} {{ i.lname }}
+                    </div>
+
+                    <!-- details list -->
+                    <ul class="details-list">
+                        <!-- phone -->
+                        <li>
+                            <i class="fas fa-phone-alt"></i>
+                            <span>{{ i.phone }}</span>
+                        </li>
+
+                        <!-- address (multi-line but we keep clean) -->
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>
+                                {% if i.address %}
+                                    <span class="address-chip"><i class="fas fa-home"></i> {{ i.address }}</span>
+                                {% else %}
+                                    <span class="address-chip">address not provided</span>
+                                {% endif %}
+                            </span>
+                        </li>
+
+                        <!-- city + pincode (combined) -->
+                        <li>
+                            <i class="fas fa-city"></i>
+                            <span class="city-pincode">
+                                {% if i.city %}<span class="address-chip"><i class="fas fa-building"></i> {{ i.city }}</span>{% endif %}
+                                {% if i.pincode %}<span class="address-chip"><i class="fas fa-mail-bulk"></i> {{ i.pincode }}</span>{% endif %}
+                                {% if not i.city and not i.pincode %}
+                                    <span class="address-chip">location unknown</span>
+                                {% endif %}
+                            </span>
+                        </li>
+
+                        <!-- gender (with icon) -->
+                        <li>
+                            <i class="fas fa-venus-mars"></i>
+                            <span class="gender-badge">
+                                {% if i.gender == 'Male' %}
+                                    <i class="fas fa-mars"></i> Male
+                                {% elif i.gender == 'Female' %}
+                                    <i class="fas fa-venus"></i> Female
+                                {% elif i.gender == 'Other' %}
+                                    <i class="fas fa-genderless"></i> Other
+                                {% else %}
+                                    <i class="fas fa-question"></i> not specified
+                                {% endif %}
+                            </span>
+                        </li>
+                    </ul>
+
+                    <!-- subtle meta (optional) -->
+                    <div style="margin-top: 20px; text-align: right; color: #946b4b; font-size:0.9rem; border-top: 1px solid #f0cdb2; padding-top: 14px;">
+                        <i class="fas fa-user-check"></i> active member
+                    </div>
+                </div><!-- end user-content -->
+            </div><!-- end user-card -->
+            {% empty %}
+            <!-- if no users -->
+            <div class="no-users">
+                <i class="fas fa-user-slash"></i> no users found<br>
+                <span style="font-size: 1.4rem;">waiting for community to join</span>
+            </div>
+            {% endfor %}
+        </div>
+    </main>
+
+    <!-- ========== FOOTER ========== -->
+    {% include 'footer.html' %}
+
+</body>
+</html>

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MehndiVerse · design gallery</title>
+    <!-- Font Awesome 6 (matches header) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f8efe6;
+            font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+            color: #2e1c12;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* main content area */
+        .design-studio {
+            flex: 1;
+            max-width: 1400px;
+            width: 100%;
+            margin: 30px auto 40px;
+            padding: 0 25px;
+        }
+
+        /* page header */
+        .page-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .page-header h1 {
+            font-size: 2.8rem;
+            font-weight: 600;
+            color: #351f12;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .page-header h1 i {
+            color: #bc6137;
+            background: #f4d9c4;
+            padding: 12px;
+            border-radius: 50%;
+            box-shadow: 0 6px 0 #c27647;
+        }
+
+        .gallery-badge {
+            background: #e5cfbc;
+            padding: 12px 28px;
+            border-radius: 60px;
+            font-size: 1.3rem;
+            font-weight: 550;
+            border: 2px solid #b9794d;
+            box-shadow: 0 5px 0 #8d5836;
+            color: #2f1d10;
+        }
+
+        .gallery-badge i {
+            color: #aa4e1e;
+            margin-right: 10px;
+        }
+
+        /* ---------- design cards grid (replaces flat table) ---------- */
+        .design-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .design-card {
+            background: white;
+            border-radius: 50px 12px 50px 12px;
+            box-shadow: 0 20px 30px -12px #a86941;
+            transition: transform 0.2s ease, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border: 2px solid #f5cfb2;
+            position: relative;
+        }
+
+        .design-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 28px 35px -12px #9a623f;
+            border-color: #cf8b5e;
+        }
+
+        /* image area – with aspect ratio */
+        .design-image {
+            height: 240px;
+            background: #dbbc9b;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            border-bottom: 5px solid #cf8b5e;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            padding: 12px;
+        }
+
+        /* type badge (design type) */
+        .type-badge {
+            background: #261c14e0;
+            backdrop-filter: blur(3px);
+            color: #ffdbb8;
+            padding: 8px 18px;
+            border-radius: 40px 6px 40px 6px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: 1px solid #d6935e;
+            box-shadow: 0 3px 0 #6b3d22;
+            text-transform: capitalize;
+        }
+
+        .type-badge i {
+            color: #f3b180;
+            margin-right: 6px;
+        }
+
+        /* card content */
+        .design-content {
+            padding: 22px 20px 20px;
+            background: #fffcf7;
+        }
+
+        /* meta row (hand size + coverage) */
+        .meta-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px 20px;
+            margin-bottom: 20px;
+            border-bottom: 2px dashed #deb887;
+            padding-bottom: 16px;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.15rem;
+            color: #3f2b1b;
+            background: #f6e4d4;
+            padding: 8px 18px;
+            border-radius: 40px 6px 40px 6px;
+        }
+
+        .meta-item i {
+            color: #bc6137;
+            width: 24px;
+            font-size: 1.3rem;
+        }
+
+        /* price and date row */
+        .price-date-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #faeadb;
+            padding: 14px 18px;
+            border-radius: 40px 8px 40px 8px;
+            margin: 18px 0 10px;
+            border: 1px solid #dba477;
+        }
+
+        .price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #962d0e;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .price i {
+            font-size: 1.6rem;
+            color: #b85f32;
+        }
+
+        .date {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #b4815b;
+            color: white;
+            padding: 8px 18px;
+            border-radius: 40px 6px 40px 6px;
+            font-weight: 600;
+            border: 2px solid #ecb387;
+        }
+
+        .date i {
+            color: #ffddbb;
+        }
+
+        /* optional design note / empty state */
+        .no-designs {
+            grid-column: 1 / -1;
+            background: #fffbee;
+            border-radius: 100px 20px 100px 20px;
+            padding: 80px 20px;
+            text-align: center;
+            font-size: 2rem;
+            color: #7b5a40;
+            border: 4px dashed #c79b75;
+        }
+
+        /* responsive */
+        @media (max-width: 700px) {
+            .page-header {
+                flex-direction: column;
+                align-items: start;
+            }
+            .design-image {
+                height: 200px;
+            }
+        }
+
+        /* subtle fix for footer inclusion */
+        .footer {
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========== MEHNDI VERSE ADMIN HEADER ========== -->
+    {% include 'admin_header.html' %}
+
+    <!-- ========== DESIGN GALLERY SECTION ========== -->
+    <main class="design-studio">
+        <div class="page-header">
+            <h1>
+                <i class="fas fa-palette"></i> 
+                design showcase
+            </h1>
+            <div class="gallery-badge">
+                <i class="fas fa-images"></i> {{ data|length }} design{{ data|length|pluralize }}
+            </div>
+        </div>
+
+        <!-- design grid – loops through data from Django -->
+        <div class="design-grid">
+            {% for i in data %}
+            <div class="design-card">
+                <!-- image section with background -->
+                <div class="design-image" 
+                     {% if i.image %}style="background-image: url('{{ i.image }}');"{% else %}style="background: linear-gradient(145deg, #c7a484, #b58b66);"{% endif %}>
+                    <!-- design type badge on image -->
+                    <span class="type-badge">
+                        <i class="fas fa-tag"></i> {{ i.design_type|default:"mehndi" }}
+                    </span>
+                </div>
+
+                <div class="design-content">
+                    <!-- hand size & coverage row (always present) -->
+                    <div class="meta-row">
+                        {% if i.hand_size %}
+                        <div class="meta-item">
+                            <i class="fas fa-hand-back-fist"></i> {{ i.hand_size }}
+                        </div>
+                        {% endif %}
+                        {% if i.coverage %}
+                        <div class="meta-item">
+                            <i class="fas fa-fan"></i> {{ i.coverage }}
+                        </div>
+                        {% endif %}
+                        <!-- fallback if both missing (though unlikely) -->
+                        {% if not i.hand_size and not i.coverage %}
+                        <div class="meta-item">
+                            <i class="fas fa-paint-brush"></i> standard
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- price & date (core fields) -->
+                    <div class="price-date-row">
+                        <div class="price">
+                            <i class="fas fa-indian-rupee-sign"></i> {{ i.price|default:"—" }}
+                        </div>
+                        <div class="date">
+                            <i class="fas fa-calendar-alt"></i> {{ i.date|default:"—" }}
+                        </div>
+                    </div>
+
+                    <!-- subtle note: admin options could go here (edit/delete) but keep pure to original, 
+                         which only displays data. we stay true: just display fields -->
+                    <div style="margin-top: 12px; text-align: right; color: #946b4b; font-size:0.95rem; border-top: 1px solid #f0cdb2; padding-top: 12px;">
+                        <i class="fas fa-eye"></i> design preview
+                    </div>
+                </div><!-- end design-content -->
+            </div><!-- end design-card -->
+            {% empty %}
+            <!-- if no designs -->
+            <div class="no-designs">
+                <i class="fas fa-paint-brush"></i> no designs yet<br>
+                <span style="font-size: 1.4rem;">artists will add their mehndi creations here</span>
+            </div>
+            {% endfor %}
+        </div>
+    </main>
+
+    <!-- ========== FOOTER ========== -->
+    {% include 'footer.html' %}
+
+</body>
+</html>

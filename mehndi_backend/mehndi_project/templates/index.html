@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MehndiVerse · 6 hand mehndi designs</title>
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #fffaf4;
+            font-family: 'Outfit', 'Segoe UI', system-ui, sans-serif;
+            color: #2e1c12;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 25px;
+        }
+
+        /* attractive palette */
+        :root {
+            --rich-coral: #f45b4b;
+            --deep-maroon: #b03a2e;
+            --warm-gold: #e8aa6b;
+            --soft-peach: #ffe8da;
+            --cream: #fef6ed;
+            --brown-sugar: #b3745c;
+            --henna-green: #3d9970;
+            --shadow-float: 0 25px 35px -18px #c0573766;
+        }
+
+        /* ---------- navbar ---------- */
+        .navbar {
+            background: rgba(255, 245, 235, 0.9);
+            backdrop-filter: blur(14px);
+            border-bottom: 3px solid #f9b997;
+            padding: 12px 0;
+            position: sticky;
+            top: 0;
+            z-index: 99;
+            box-shadow: 0 10px 25px -12px #c2714b;
+        }
+
+        .nav-flex {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .logo-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-badge {
+            width: 52px;
+            height: 52px;
+            background: linear-gradient(145deg, #f26241, #bc4b2e);
+            border-radius: 18px 6px 24px 6px;
+            transform: rotate(-3deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 12px 0 #7b3723;
+        }
+
+        .logo-badge i {
+            font-size: 30px;
+            color: #ffeedd;
+            transform: rotate(3deg);
+        }
+
+        .logo-text h1 {
+            font-size: 30px;
+            font-weight: 700;
+            background: linear-gradient(125deg, #b34924, #dd7e4a);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.1;
+        }
+
+        .logo-text p {
+            font-size: 12px;
+            letter-spacing: 2.5px;
+            color: #ad6b4a;
+            font-weight: 400;
+        }
+
+        /* desktop navigation */
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #472e1d;
+            font-weight: 520;
+            font-size: 1.15rem;
+            padding: 6px 2px;
+            border-bottom: 3px solid transparent;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-links a i {
+            color: #e26333;
+        }
+
+        .nav-links a:hover {
+            border-bottom-color: #e26333;
+            color: #832f10;
+        }
+
+        /* auth buttons */
+        .auth-group {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-weight: 550;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+            transition: 0.25s;
+            box-shadow: 0 6px 14px rgba(210, 90, 40, 0.25);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #dc764b;
+            color: #832f10;
+        }
+
+        .btn-primary {
+            background: linear-gradient(115deg, #d6552e, #f06e42);
+            color: white;
+            border: 1px solid #ffb38b;
+        }
+
+        .btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 22px -10px #b7512e;
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: 2px solid #cb7648;
+            font-size: 28px;
+            color: #723e20;
+            padding: 6px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+        }
+
+        /* mobile panel */
+        .mobile-panel {
+            position: fixed;
+            top: 84px;
+            left: 0;
+            width: 100%;
+            background: #fae8db;
+            backdrop-filter: blur(12px);
+            padding: 28px 25px;
+            z-index: 1000;
+            border-bottom: 5px solid #cd7649;
+            transform: translateY(-150%);
+            opacity: 0;
+            transition: 0.3s ease;
+            display: none;
+            box-shadow: 0 30px 35px -18px #77452b;
+        }
+
+        .mobile-panel.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .mobile-panel ul {
+            list-style: none;
+        }
+
+        .mobile-panel li {
+            margin: 18px 0;
+        }
+
+        .mobile-panel a {
+            text-decoration: none;
+            font-size: 1.6rem;
+            color: #4a2c1b;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-weight: 500;
+        }
+
+        /* ---------- HERO ---------- */
+        .hero {
+            background: linear-gradient(125deg, #ffe5d0, #ffdac2);
+            padding: 80px 0 90px;
+            border-bottom: 6px solid #f4b183;
+            text-align: center;
+            position: relative;
+            isolation: isolate;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(45deg, rgba(180, 100, 50, 0.03) 0px, rgba(180, 100, 50, 0.03) 20px, transparent 20px, transparent 40px);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .hero h2 {
+            font-size: 3.6rem;
+            font-weight: 650;
+            color: #3b1f10;
+            text-shadow: 0 4px 8px #fbc9a6;
+            letter-spacing: -0.02em;
+        }
+
+        .hero h2 i {
+            color: #d34f2b;
+            margin: 0 10px;
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            max-width: 700px;
+            margin: 20px auto 30px;
+            background: rgba(255, 240, 225, 0.8);
+            backdrop-filter: blur(5px);
+            padding: 16px 35px;
+            border-radius: 80px;
+            color: #502f19;
+            border: 2px solid #f2ba8d;
+        }
+
+        .search-sect {
+            max-width: 650px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 70px;
+            display: flex;
+            align-items: center;
+            border: 3px solid #ff9366;
+            padding: 5px;
+        }
+
+        .search-sect input {
+            flex: 1;
+            padding: 18px 20px;
+            border: none;
+            border-radius: 70px;
+            font-size: 1.1rem;
+            background: transparent;
+        }
+
+        .search-sect button {
+            background: #f45b4b;
+            border: none;
+            color: white;
+            padding: 14px 32px;
+            border-radius: 60px;
+            font-size: 1.3rem;
+            margin-right: 5px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .search-sect button:hover {
+            background: #d43f2e;
+        }
+
+        /* ---------- GALLERY (6 HAND IMAGES WITH REAL MEHNDI) ---------- */
+        .gallery {
+            padding: 70px 0 50px;
+        }
+
+        .heading-row {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 45px;
+        }
+
+        .heading-row h3 {
+            font-size: 2.8rem;
+            font-weight: 600;
+            color: #321f12;
+            border-left: 14px solid #f26241;
+            padding-left: 20px;
+        }
+
+        .heading-row span {
+            background: #f3d5bc;
+            padding: 10px 30px;
+            border-radius: 60px;
+            font-size: 1.2rem;
+            color: #643f26;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 35px;
+        }
+
+        .design-item {
+            background: white;
+            border-radius: 40px 12px 40px 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow-float);
+            transition: 0.25s ease;
+            border: 1px solid #facdb2;
+        }
+
+        .design-item:hover {
+            transform: scale(1.02) translateY(-10px);
+            box-shadow: 0 32px 40px -14px #b15f3a;
+        }
+
+        .art-img {
+            height: 280px;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            padding: 16px;
+            position: relative;
+        }
+
+
+        
+
+         /* ----- REAL HAND IMAGES WITH MEHNDI (from Unsplash) ----- */
+        .img-hand-1 {
+            background-image: url('https://mehndidesignlist.com/wp-content/uploads/2025/06/royal-dulhan-mehndi-design.jpg');
+            background-color: #d9b89c;
+        }
+        
+        .img-hand-2 {
+            background-image: url('https://www.kurtiblouse.com/wp-content/uploads/2018/10/Rajasthani-Traditional-Bridal-Henna-Mehndi-Design-1.jpg');
+            background-color: #c9a889;
+        }
+        
+        .img-hand-3 {
+            background-image: url('https://i.pinimg.com/736x/ce/a7/d1/cea7d1310bc1d987aa64792f3fccd0fb.jpg');
+            background-color: #b48c6e;
+        }
+        
+        .img-hand-4 {
+            background-image: url('https://png.pngtree.com/png-vector/20240321/ourmid/pngtree-simple-arabic-mehndi-design-images-photos-png-image_12189506.png');
+            background-color: #d4a88b;
+        }
+
+        .img-hand-5 {
+            background-image: url('https://image-marketing.s3.ap-south-1.amazonaws.com/wp-content/uploads/2020/04/05171243/3.-Indian-mehendi-design-683x1024.jpg');
+            background-color: #c09a7a;
+        }
+
+        .img-hand-6 {
+            background-image: url('https://mehendibazar.com/wp-content/uploads/2024/09/Large-Roses-mehndi-design-02.jpeg');
+            background-color: #bf8f6b;
+        }
+
+        /* fallback colors in case images are slow */
+        .img-hand-1, .img-hand-2, .img-hand-3, .img-hand-4, .img-hand-5, .img-hand-6 {
+            background-blend-mode: overlay;
+        }
+
+        .img-tag {
+            background: #372113e0;
+            color: #ffe7cf;
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            backdrop-filter: blur(2px);
+        }
+
+        .fav-icon {
+            color: #f65333;
+            background: white;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            box-shadow: 0 4px 10px #953e1f;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .fav-icon:hover {
+            transform: scale(1.1);
+            background: #fff0e6;
+        }
+
+        .card-content {
+            padding: 20px 20px 25px;
+            background: #fffcf8;
+        }
+
+        .design-title {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #311f12;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .design-title span {
+            font-size: 1.5rem;
+        }
+
+        .artist-line {
+            display: flex;
+            gap: 15px;
+            color: #ac623f;
+            margin: 10px 0 12px;
+            border-bottom: 2px dotted #eabb9b;
+            padding-bottom: 8px;
+        }
+
+        .meta-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .style-badge {
+            background: #eed6c0;
+            border-radius: 50px;
+            padding: 6px 18px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .rating {
+            color: #eb8034;
+            font-weight: 600;
+        }
+
+        /* feature banner */
+        .feature-banner {
+            background: linear-gradient(125deg, #fcc9ae, #ffb690);
+            border-radius: 90px 20px 90px 20px;
+            padding: 40px 45px;
+            margin: 50px 0 30px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 30px 30px -16px #b95f35;
+            border: 2px solid #f5875a;
+        }
+
+        .banner-text {
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: #2f1b0e;
+        }
+
+        .banner-text i {
+            color: #862f12;
+            background: #ffdbbd;
+            border-radius: 50%;
+            padding: 10px;
+            margin-right: 8px;
+        }
+
+        .banner-buttons {
+            display: flex;
+            gap: 18px;
+        }
+
+        .btn-big {
+            padding: 16px 35px;
+            font-size: 1.3rem;
+            border-radius: 70px;
+            background: white;
+            border: none;
+            font-weight: 600;
+            color: #972f0a;
+            box-shadow: 0 10px 18px #97441f;
+            cursor: pointer;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .btn-big:hover {
+            background: #fef0e4;
+            transform: scale(1.03);
+        }
+
+        /* footer */
+        footer {
+            background: #25170f;
+            color: #eedacb;
+            padding: 60px 0 20px;
+            margin-top: 60px;
+            border-top: 10px solid #cd673b;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 45px;
+            margin-bottom: 45px;
+        }
+
+        .footer-col h5 {
+            color: #fbc19b;
+            font-size: 1.4rem;
+            font-weight: 500;
+            border-left: 6px solid #f55a3b;
+            padding-left: 15px;
+            margin-bottom: 20px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col li {
+            margin: 14px 0;
+        }
+
+        .footer-col a {
+            color: #ddb69b;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .footer-col a:hover {
+            color: #ffc298;
+            padding-left: 6px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 18px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            background: #4b2e1d;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: #f9c29b;
+            transition: 0.2s;
+        }
+
+        .social-icons a:hover {
+            background: #be653b;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .copy-line {
+            text-align: center;
+            border-top: 2px solid #62412b;
+            padding-top: 25px;
+            font-size: 1rem;
+            color: #af886c;
+        }
+
+        /* responsive */
+        @media (max-width: 900px) {
+            .nav-links, .auth-group {
+                display: none;
+            }
+            .mobile-toggle {
+                display: block;
+            }
+            .mobile-panel {
+                display: block;
+            }
+        }
+        @media (max-width: 600px) {
+            .hero h2 { font-size: 2.6rem; }
+            .banner-text { font-size: 1.6rem; }
+            .feature-banner {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- navbar -->
+    <header class="navbar">
+        <div class="container nav-flex">
+            <div class="logo-group">
+                <div class="logo-badge">
+                    <i class="fas fa-hand-fist"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>mehndiVerse</h1>
+                    <p>REAL HAND DESIGNS</p>
+                </div>
+            </div>
+
+{#            <div class="nav-links">#}
+{#                <a href="#"><i class="fas fa-compass"></i> discover</a>#}
+{#                <a href="#"><i class="fas fa-palette"></i> designs</a>#}
+{#                <a href="#"><i class="fas fa-user-astronaut"></i> artists</a>#}
+{#            </div>#}
+
+            <div class="auth-group">
+{#                <button class="btn btn-outline" onclick="window.location.href='#'"><i class="fas fa-pen-fancy"></i> artist register</button>#}
+                <button class="btn btn-primary" onclick="window.location.href='/myapp/login_get/'"><i class="fas fa-arrow-right-to-bracket"></i> login</button>
+            </div>
+
+            <button class="mobile-toggle" id="mobileToggle"><i class="fas fa-bars"></i></button>
+        </div>
+
+        <!-- mobile panel -->
+        <div class="mobile-panel" id="mobilePanel">
+            <ul>
+{#                <li><a href="#"><i class="fas fa-compass"></i> discover</a></li>#}
+{#                <li><a href="#"><i class="fas fa-palette"></i> designs</a></li>#}
+{#                <li><a href="#"><i class="fas fa-user-astronaut"></i> artists</a></li>#}
+{#                <li><a href="#"><i class="fas fa-pen-fancy"></i> artist register</a></li>#}
+                <li><a href="#"><i class="fas fa-arrow-right-to-bracket"></i> login</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- hero -->
+    <section class="hero">
+        <div class="container">
+            <h2><i class="fas fa-leaf"></i> real hands, real mehndi <i class="fas fa-leaf"></i></h2>
+            <p>explore authentic henna designs on real hands</p>
+{#            <div class="search-sect">#}
+{#                <input type="text" placeholder="search design, artist or occasion...">#}
+{#                <button><i class="fas fa-magnifying-glass"></i></button>#}
+{#            </div>#}
+        </div>
+    </section>
+
+    <!-- main gallery - 6 HAND IMAGES WITH MEHNDI -->
+    <section class="gallery">
+        <div class="container">
+            <div class="heading-row">
+                <h3>fresh on hands ✨</h3>
+                <span><i class="fas fa-hand-peace"></i> 6 real photos</span>
+            </div>
+
+            <div class="card-grid">
+                <!-- card 1 - arabic mehndi on hand -->
+                <div class="design-item">
+                    <div class="art-img img-hand-1">
+                        <span class="img-tag"><i class="far fa-clock"></i> just added</span>
+                        <div class="fav-icon"><i class="fas fa-heart"></i></div>
+                    </div>
+                    <div class="card-content">
+                        <div class="design-title">
+                            arabic vines <span>✿</span>
+                        </div>
+                        <div class="artist-line">
+                            <i class="fas fa-user-pen"></i> Artist: Amina Khan
+                        </div>
+                        <div class="meta-row">
+                            <span class="style-badge">floral · mehndi night</span>
+                            <span class="rating"><i class="fas fa-star"></i> 4.9</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- card 2 - bridal mehndi on hand -->
+                <div class="design-item">
+                    <div class="art-img img-hand-2">
+                        <span class="img-tag"><i class="fas fa-crown"></i> bridal special</span>
+                        <div class="fav-icon"><i class="fas fa-heart"></i></div>
+                    </div>
+                    <div class="card-content">
+                        <div class="design-title">
+                            rajasthani bridal <span>✨</span>
+                        </div>
+                        <div class="artist-line">
+                            <i class="fas fa-user-pen"></i> Artist: Lakshmi Devi
+                        </div>
+                        <div class="meta-row">
+                            <span class="style-badge">peacock · heavy</span>
+                            <span class="rating"><i class="fas fa-star"></i> 4.9</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- card 3 - minimalist mehndi on hand -->
+                <div class="design-item">
+                    <div class="art-img img-hand-3">
+                        <span class="img-tag"><i class="fas fa-hands"></i> minimalist</span>
+                        <div class="fav-icon"><i class="fas fa-heart"></i></div>
+                    </div>
+                    <div class="card-content">
+                        <div class="design-title">
+                            indo-chic <span>☾</span>
+                        </div>
+                        <div class="artist-line">
+                            <i class="fas fa-user-pen"></i> Artist: Priya Kapoor
+                        </div>
+                        <div class="meta-row">
+                            <span class="style-badge">negative space</span>
+                            <span class="rating"><i class="fas fa-star"></i> 5.0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- card 4 - modern gulf style on hand -->
+                <div class="design-item">
+                    <div class="art-img img-hand-4">
+                        <span class="img-tag"><i class="fas fa-hand-peace"></i> modern</span>
+                        <div class="fav-icon"><i class="fas fa-heart"></i></div>
+                    </div>
+                    <div class="card-content">
+                        <div class="design-title">
+                            gulf style <span>◈</span>
+                        </div>
+                        <div class="artist-line">
+                            <i class="fas fa-user-pen"></i> Artist: Noora Al-Mansour
+                        </div>
+                        <div class="meta-row">
+                            <span class="style-badge">bold outlines</span>
+                            <span class="rating"><i class="fas fa-star"></i> 4.8</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- card 5 - traditional mehndi on hand -->
+                <div class="design-item">
+                    <div class="art-img img-hand-5">
+                        <span class="img-tag"><i class="fas fa-feather"></i> traditional</span>
+                        <div class="fav-icon"><i class="fas fa-heart"></i></div>
+                    </div>
+                    <div class="card-content">
+                        <div class="design-title">
+                            marwari heritage <span>🌸</span>
+                        </div>
+                        <div class="artist-line">
+                            <i class="fas fa-user-pen"></i> Artist: Sunita Rajput
+                        </div>
+                        <div class="meta-row">
+                            <span class="style-badge">paisley · classic</span>
+                            <span class="rating"><i class="fas fa-star"></i> 4.7</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- card 6 - contemporary mehndi on hand -->
+                <div class="design-item">
+                    <div class="art-img img-hand-6">
+                        <span class="img-tag"><i class="fas fa-star"></i> contemporary</span>
+                        <div class="fav-icon"><i class="fas fa-heart"></i></div>
+                    </div>
+                    <div class="card-content">
+                        <div class="design-title">
+                            fusion art <span>✧</span>
+                        </div>
+                        <div class="artist-line">
+                            <i class="fas fa-user-pen"></i> Artist: Rohan Mehta
+                        </div>
+                        <div class="meta-row">
+                            <span class="style-badge">geometric · modern</span>
+                            <span class="rating"><i class="fas fa-star"></i> 4.9</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- register/login banner -->
+            <div class="feature-banner">
+                <div class="banner-text">
+                    <i class="fas fa-hand-sparkles"></i> showcase your art
+                </div>
+{#                <div class="banner-buttons">#}
+{#                    <button class="btn-big" onclick="window.location.href='#'"><i class="fas fa-pen-fancy"></i> artist register</button>#}
+{#                    <button class="btn-big" onclick="window.location.href='#'" style="background:#fef2e6;"><i class="fas fa-arrow-right-to-bracket"></i> login</button>#}
+{#                </div>#}
+            </div>
+        </div>
+    </section>
+
+    <!-- footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h5>mehndiVerse</h5>
+                    <p style="color:#e1bba2;">real hands · real henna · real artists</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h5>explore</h5>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> all designs</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> bridal mehndi</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> arabic styles</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> indian traditional</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>artists</h5>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> become an artist</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> artist login</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> upload portfolio</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> community</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>connect</h5>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> about</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> contact</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> privacy</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> terms</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copy-line">
+                <p>© 2026 mehndiVerse — beautiful mehndi on real hands <i class="fas fa-heart" style="color: #f55a3b;"></i></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- mobile toggle script -->
+    <script>
+        const toggleBtn = document.getElementById('mobileToggle');
+        const panel = document.getElementById('mobilePanel');
+
+        toggleBtn.addEventListener('click', () => {
+            panel.classList.toggle('active');
+            if (panel.classList.contains('active')) {
+                toggleBtn.innerHTML = '<i class="fas fa-times"></i>';
+            } else {
+                toggleBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            }
+        });
+
+        document.querySelectorAll('.mobile-panel a').forEach(link => {
+            link.addEventListener('click', () => {
+                panel.classList.remove('active');
+                toggleBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+
+        // Simple favorite icon interaction
+        document.querySelectorAll('.fav-icon').forEach(icon => {
+            icon.addEventListener('click', function(e) {
+                e.preventDefault();
+                const heart = this.querySelector('i');
+                heart.classList.toggle('fas');
+                heart.classList.toggle('far');
+                if (heart.classList.contains('far')) {
+                    heart.classList.remove('far');
+                    heart.classList.add('fas');
+                    this.style.color = '#f65333';
+                } else {
+                    // just visual feedback
+                }
+            });
+        });
+    </script>
+</body>
+</html>
